@@ -29,3 +29,53 @@ button:hover {
   background-color: deeppink;
   border-color: aqua;
 }
+
+.main_page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.todo-item {
+  display: flex;
+  max-width: 900px;
+  align-items: center; /* Aligns all elements to the same level */
+  gap: 10px; /* Adds spacing between elements */
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 50px;
+  border-bottom: 1px solid #ccc; /* Optional: Adds a separator */
+}
+
+.delete_todo {
+  margin-left: auto; /* Pushes the button to the right */
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.done_todo {
+  margin-left: auto; /* Pushes the button to the right */
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete_todo:hover {
+  background-color: darkred;
+}
+
+.back_button {
+  margin-top: 20px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+  position: relative;
+}

@@ -16,8 +16,15 @@
     />
     <title>Hello</title>
   </head>
-  <body>
-    <a href="{{ url_for('get_todo') }}"><button class="">All ToDo</button> </a>
-    <a href="{{ url_for('add') }}"><button class="">New Todo</button> </a>
+  <body class="main_page">
+    <p>
+      <h1> What do I have to do? </h1>
+    </p>
+    <a href="{{ url_for('get_todo') }}">
+      <button class="">All ToDo-s</button>
+    </a>
+    <a href="{{ url_for('add') }}">
+      <button class="">New Todo</button>
+    </a>
   </body>
 </html>

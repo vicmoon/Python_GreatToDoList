@@ -3,17 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Home</title>
   </head>
   <body>
-    <p>
+    <div class="all_todoes">
       {% for todo in todoes %}
+      <div class="todo-item" id="todo-{{ todo.id }}">
+        <span>{{ todo.id }}</span>
+        <span class="todo-name">{{ todo.name }}</span>
 
-      <span> {{todo.name}} </span>
-      <span> {{todo.description}} </span>
-      <span> {{todo.progress}} </span>
-
+        <button onclick="markDone('{{ todo.id }}')" class="done_todo">
+          Done
+        </button>
+        <button onclick="deleteTodo('{{ todo.id }}')" class="delete_todo">
+          Delete
+        </button>
+      </div>
       {% endfor %}
-    </p>
+    </div>
+    <a href="{{ url_for('home') }}">
+      <button class="back_button">Back</button>
+    </a>
+    <a href="{{ url_for('add') }}">
+      <button class="add_button">New</button>
+    </a>
+
+    <script>
+      async function markDone(todoId) {
+        const response = await fetch(`/update/${todoId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'done' }),
+        });
+
+        if (response.ok) {
+          document.getElementById(`todo-${todoId}`).classList.add('completed'); // Optional: Add a CSS class
+        } else {
+          alert('Failed to mark as done.');
+        }
+      }
+
+      async function deleteTodo(todoId) {
+        if (!confirm('Are you sure?')) return;
+
+        const response = await fetch(`/update/${todoId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'delete' }),
+        });
+
+        if (response.ok) {
+          document.getElementById(`todo-${todoId}`).remove(); // Remove from UI
+        } else {
+          alert('Failed to delete.');
+        }
+      }
+    </script>
   </body>
 </html>
