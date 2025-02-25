@@ -16,12 +16,29 @@
         <span>{{ todo.id }}</span>
         <span class="todo-name">{{ todo.name }}</span>
 
-        <button onclick="markDone('{{ todo.id }}')" class="done_todo">
-          Done
-        </button>
-        <button onclick="deleteTodo('{{ todo.id }}')" class="delete_todo">
-          Delete
-        </button>
+        <form
+          action="{{ url_for('update_todo', todo_id=todo.id) }}"
+          method="POST"
+        >
+          <button
+            type="submit"
+            name="action"
+            value="done"
+            class="done_todo"
+            onclick="return confirm('Mark as done?')"
+          >
+            Done
+          </button>
+          <button
+            type="submit"
+            name="action"
+            value="delete"
+            class="delete_todo"
+            onclick="return confirm('Are you sure?')"
+          >
+            Delete
+          </button>
+        </form>
       </div>
       {% endfor %}
     </div>
@@ -32,7 +49,7 @@
       <button class="add_button">New</button>
     </a>
 
-    <script>
+    <!-- <script>
       async function markDone(todoId) {
         const response = await fetch(`/update/${todoId}`, {
           method: 'POST',
@@ -41,7 +58,9 @@
         });
 
         if (response.ok) {
-          document.getElementById(`todo-${todoId}`).classList.add('completed'); // Optional: Add a CSS class
+          const todoItem = document.getElementById(`todo-${todoId}`);
+          todoItem.classList.add('completed'); // Add CSS for styling
+          document.getElementById('todo-list').appendChild(todoItem); // Move to bottom
         } else {
           alert('Failed to mark as done.');
         }
@@ -62,6 +81,6 @@
           alert('Failed to delete.');
         }
       }
-    </script>
+    </script> -->
   </body>
 </html>

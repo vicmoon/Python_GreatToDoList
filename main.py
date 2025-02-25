@@ -73,7 +73,7 @@ def get_todo():
 def add():
     form = NewToDoForm()
     if form.validate_on_submit():
-        print("Form validated!")  # ✅ Debugging step
+        
 
         new_todo = ToDo(
             name=form.name.data,
@@ -81,7 +81,7 @@ def add():
         )
         db.session.add(new_todo)
         db.session.commit()
-        print("New ToDo added:", new_todo.name)  # ✅ Debugging step
+        
 
         return redirect(url_for("home"))
 
