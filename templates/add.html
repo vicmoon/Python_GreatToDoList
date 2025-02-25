@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Create ToDo</title>
+  </head>
+  <body>
+    <form action="{{ url_for('add') }}" method="POST">
+      {{ form.hidden_tag() }}
+      <p>
+        <label >{{ form.name.label }}</label> 
+        {{ form.name(size=100, class="form-input") }}
+        {% if form.name.errors %}
+            <ul class="errors">
+                {% for error in form.name.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </p>
+    
+    <p>
+        <label >{{ form.details.label }}</label> 
+        {{ form.details(size=100, class="form-input") }}
+        {% if form.details.errors %}
+            <ul class="errors">
+                {% for error in form.details.errors %}
+                    <li style="color: red;">{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </p>
+        
+    <p>
+      <label>{{ form.progress.label }}</label> 
+      {{ form.progress(class="form-select") }}
+      {% if form.progress.errors %}
+          <ul class="errors">
+              {% for error in form.progress.errors %}
+                  <li style="color: red;">{{ error }}</li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+   </p>
+    
+    <a href="{{ url_for('add') }}"><button class="add_book_button ">Add New Book</button></a>
+    </form>
+  </body>
+</html>
