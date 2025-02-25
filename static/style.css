@@ -2,5 +2,30 @@ body {
   background-color: #48a6a7;
   text-align: center;
   font-family: 'Noto Sans', serif;
+  font-size: 30px;
   color: aliceblue;
+}
+
+label {
+  color: black;
+}
+
+.form-input,
+.form-select {
+  margin-top: 50px;
+  background-color: #f8f3d9;
+  padding: 15px;
+  border-radius: 30px;
+}
+
+button {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: crimson;
+}
+
+button:hover {
+  background-color: deeppink;
+  border-color: aqua;
 }

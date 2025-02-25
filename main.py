@@ -24,10 +24,10 @@ db.init_app(app)
 #Add new ToDo Form 
 
 class NewToDoForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('Do what?', validators=[DataRequired()])
     details = StringField('Details', validators=[DataRequired()])
     progress = SelectField(
-        'Progress',
+        'State',
         choices=[
         ('new', 'New'), 
         ('in_progress', 'In Progress'),
@@ -55,7 +55,12 @@ with app.app_context():
     db.create_all()
 
 
+@app.route('/all')
+def get_todo():
+    all_todoes = ToDo.query.all()
 
+
+    return render_template("alltodoes.html", todoes = all_todoes)
 
 
 @app.route("/")

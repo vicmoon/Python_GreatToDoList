@@ -23,7 +23,7 @@
         {% endif %}
     </p>
     
-    <p>
+    <!-- <p>
         <label >{{ form.details.label }}</label> 
         {{ form.details(size=100, class="form-input") }}
         {% if form.details.errors %}
@@ -34,7 +34,7 @@
             </ul>
         {% endif %}
     </p>
-        
+         -->
     <p>
       <label>{{ form.progress.label }}</label> 
       {{ form.progress(class="form-select") }}
@@ -47,7 +47,7 @@
       {% endif %}
    </p>
     
-    <a href="{{ url_for('add') }}"><button class="add_book_button ">Add New Book</button></a>
+    <a href="{{ url_for('add') }}"><button class="add_book_button "> Go do it! </button></a>
     </form>
   </body>
 </html>
