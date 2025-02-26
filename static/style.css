@@ -38,15 +38,19 @@ button:hover {
 
 .todo-item {
   display: flex;
-  max-width: 900px;
-  align-items: center; /* Aligns all elements to the same level */
-  gap: 10px; /* Adds spacing between elements */
+  max-width: 1000px;
+  align-items: center;
+  justify-content: space-between; /* Pushes elements apart */
   padding: 10px;
   margin: 0 auto;
   margin-top: 50px;
-  border-bottom: 1px solid #ccc; /* Optional: Adds a separator */
+  border-bottom: 1px solid #ccc;
 }
 
+.todo-buttons {
+  display: flex;
+  gap: 10px; /* Adds spacing between buttons */
+}
 .delete_todo {
   margin-left: auto; /* Pushes the button to the right */
   background-color: red;

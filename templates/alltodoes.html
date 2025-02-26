@@ -11,34 +11,28 @@
   </head>
   <body>
     <div class="all_todoes">
+      <h1>Getting there!</h1>
       {% for todo in todoes %}
-      <div class="todo-item" id="todo-{{ todo.id }}">
-        <span>{{ todo.id }}</span>
-        <span class="todo-name">{{ todo.name }}</span>
 
-        <form
-          action="{{ url_for('update_todo', todo_id=todo.id) }}"
-          method="POST"
-        >
-          <button
-            type="submit"
-            name="action"
-            value="done"
-            class="done_todo"
-            onclick="return confirm('Mark as done?')"
+      <div class="todo-item">
+        <span>{{ todo.name }} - {{ todo.progress }}</span>
+        <div class="todo-buttons">
+          <form
+            action="{{ url_for('update_todo', todo_id=todo.id) }}"
+            method="POST"
           >
-            Done
-          </button>
-          <button
-            type="submit"
-            name="action"
-            value="delete"
-            class="delete_todo"
-            onclick="return confirm('Are you sure?')"
+            <input type="hidden" name="action" value="done" />
+            <button class="done_todo" type="submit">Done</button>
+          </form>
+
+          <form
+            action="{{ url_for('update_todo', todo_id=todo.id) }}"
+            method="POST"
           >
-            Delete
-          </button>
-        </form>
+            <input type="hidden" name="action" value="delete" />
+            <button type="submit">Delete</button>
+          </form>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -48,39 +42,5 @@
     <a href="{{ url_for('add') }}">
       <button class="add_button">New</button>
     </a>
-
-    <!-- <script>
-      async function markDone(todoId) {
-        const response = await fetch(`/update/${todoId}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'done' }),
-        });
-
-        if (response.ok) {
-          const todoItem = document.getElementById(`todo-${todoId}`);
-          todoItem.classList.add('completed'); // Add CSS for styling
-          document.getElementById('todo-list').appendChild(todoItem); // Move to bottom
-        } else {
-          alert('Failed to mark as done.');
-        }
-      }
-
-      async function deleteTodo(todoId) {
-        if (!confirm('Are you sure?')) return;
-
-        const response = await fetch(`/update/${todoId}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'delete' }),
-        });
-
-        if (response.ok) {
-          document.getElementById(`todo-${todoId}`).remove(); // Remove from UI
-        } else {
-          alert('Failed to delete.');
-        }
-      }
-    </script> -->
   </body>
 </html>

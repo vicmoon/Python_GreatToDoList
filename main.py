@@ -97,24 +97,19 @@ def update_todo(todo_id):
 
     if not todo:
         return "No such ToDo found", 404
-    
 
-    data = request.get_json()
-    action = data.get("action")
+    action = request.form.get("action")  # Get action from form
 
     if action == "done":
         todo.progress = "done"
         db.session.commit()
-        return redirect(url_for("home"))
-
     elif action == "delete":
         db.session.delete(todo)
         db.session.commit()
-        return redirect(url_for("home"))
 
-    # return jsonify({"error": "Invalid action"}), 400
+    return redirect(url_for("get_todo"))
+
     
-
 
 
 if __name__ == '__main__':
